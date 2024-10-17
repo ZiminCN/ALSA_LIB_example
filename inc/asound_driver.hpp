@@ -45,6 +45,12 @@ class ASoundDriver {
   bool try_playback_audio(WAVHeader wav_header);
   bool init_snd_mixer();
   bool set_snd_volume(int volume_percent);  // volume_percent: 0-100
+  bool test_try_to_playback_audio(const std::string &filename);
+
+  char *get_audio_buffer() { return this->audio_buffer; }
+  int get_buffer_size() { return this->buffer_size; }
+  snd_pcm_t *get_playback_handle() { return this->playback_handle; }
+  snd_pcm_uframes_t get_frames() { return this->frames; }
 
  private:
   std::atomic<bool> is_running_{false};
@@ -52,7 +58,10 @@ class ASoundDriver {
   snd_pcm_hw_params_t *hw_params;
   snd_pcm_t *playback_handle = nullptr;
   int dir;
-  snd_pcm_uframes_t frames = 16;
+  snd_pcm_uframes_t frames = 64;
+  long loops = 5000000;
+  int buffer_size;
+  char *audio_buffer;
   snd_mixer_t *mixer_handle = nullptr;
   snd_mixer_elem_t *elem = nullptr;
   snd_mixer_selem_id_t *sid = nullptr;

@@ -76,45 +76,64 @@ bool ASoundDriver::init_audio_pcm(const char *name, snd_pcm_format_t format) {
   err = snd_pcm_hw_params_set_period_size_near(
       this->playback_handle, this->hw_params, &this->frames, &this->dir);
 
-  unsigned int buffer_time, period_time;
-  err = snd_pcm_hw_params_get_buffer_time_max(this->hw_params, &buffer_time, 0);
-  printf("[Debug] snd_pcm_hw_params_get_buffer_time_max.err: %d\n", err);
-  if (err < 0) {
-    printf("cannot snd_pcm_hw_params_get_buffer_time_max (%s)\r\n",
-           snd_strerror(err));
-    return err;
-  }
+  // unsigned int buffer_time, period_time;
+  // err = snd_pcm_hw_params_get_buffer_time_max(this->hw_params, &buffer_time,
+  // 0); printf("[Debug] snd_pcm_hw_params_get_buffer_time_max.err: %d\n", err);
+  // if (err < 0) {
+  //   printf("cannot snd_pcm_hw_params_get_buffer_time_max (%s)\r\n",
+  //          snd_strerror(err));
+  //   return err;
+  // }
 
-  if (buffer_time > 500000) {
-    buffer_time = 500000;
-    printf("[%s %d] buffer_time=%d, irq=%d\r\n", __FILE__, __LINE__,
-           buffer_time, buffer_time / 4);
-  }
+  // if (buffer_time > 500000) {
+  //   buffer_time = 500000;
+  //   printf("[%s %d] buffer_time=%d, irq=%d\r\n", __FILE__, __LINE__,
+  //          buffer_time, buffer_time / 4);
+  // }
 
-  err = snd_pcm_hw_params_set_buffer_time_near(
-      this->playback_handle, this->hw_params, &buffer_time, 0);
-  printf("[Debug] snd_pcm_hw_params_set_buffer_time_near.err: %d\n", err);
-  if (err < 0) {
-    printf("cannot snd_pcm_hw_params_set_buffer_time_near (%s)\r\n",
-           snd_strerror(err));
-    return err;
-  }
+  // err = snd_pcm_hw_params_set_buffer_time_near(
+  //     this->playback_handle, this->hw_params, &buffer_time, 0);
+  // printf("[Debug] snd_pcm_hw_params_set_buffer_time_near.err: %d\n", err);
+  // if (err < 0) {
+  //   printf("cannot snd_pcm_hw_params_set_buffer_time_near (%s)\r\n",
+  //          snd_strerror(err));
+  //   return err;
+  // }
 
-  period_time = buffer_time / 4;
-  err = snd_pcm_hw_params_set_period_time_near(
-      this->playback_handle, this->hw_params, &period_time, 0);
-  printf("[Debug] snd_pcm_hw_params_set_period_time_near.err: %d\n", err);
-  if (err < 0) {
-    printf("cannot snd_pcm_hw_params_set_period_time_near (%s)\r\n",
-           snd_strerror(err));
-    return err;
-  }
+  // period_time = buffer_time / 4;
+  // err = snd_pcm_hw_params_set_period_time_near(
+  //     this->playback_handle, this->hw_params, &period_time, 0);
+  // printf("[Debug] snd_pcm_hw_params_set_period_time_near.err: %d\n", err);
+  // if (err < 0) {
+  //   printf("cannot snd_pcm_hw_params_set_period_time_near (%s)\r\n",
+  //          snd_strerror(err));
+  //   return err;
+  // }
 
   err = snd_pcm_hw_params(this->playback_handle, this->hw_params);
   printf("[Debug] snd_pcm_hw_params.err: %d\n", err);
-  snd_pcm_hw_params_free(this->hw_params);
+  // snd_pcm_hw_params_free(this->hw_params);
   if (err < 0) {
     printf("cannot snd_pcm_hw_params (%s)\r\n", snd_strerror(err));
+    return err;
+  }
+
+  err = snd_pcm_hw_params_get_period_size(this->hw_params, &this->frames,
+                                          &this->dir);
+  if (err < 0) {
+    printf("cannot snd_pcm_hw_params_get_period_size (%s)\r\n",
+           snd_strerror(err));
+    return err;
+  }
+
+  this->buffer_size = this->frames * 4;
+
+  this->audio_buffer = (char *)malloc(this->buffer_size);
+
+  err = snd_pcm_hw_params_get_period_time(this->hw_params, &rrate, &this->dir);
+  if (err < 0) {
+    printf("cannot snd_pcm_hw_params_get_period_time (%s)\r\n",
+           snd_strerror(err));
     return err;
   }
 
