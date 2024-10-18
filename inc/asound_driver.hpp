@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <atomic>
+#include <fstream>
 #include <functional>
 #include <iostream>
 #include <iterator>
@@ -46,6 +47,7 @@ class ASoundDriver {
   bool init_snd_mixer();
   bool set_snd_volume(int volume_percent);  // volume_percent: 0-100
   bool test_try_to_playback_audio(const std::string &filename);
+  bool try_to_playback_audio(WAVHeader wav_header, const std::string &filename);
 
   char *get_audio_buffer() { return this->audio_buffer; }
   int get_buffer_size() { return this->buffer_size; }

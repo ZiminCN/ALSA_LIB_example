@@ -227,6 +227,62 @@ bool ASoundDriver::try_playback_audio(WAVHeader wav_header) {
 
   return true;
 }
+
+bool ASoundDriver::try_to_playback_audio(WAVHeader wav_header,
+                                         const std::string &filename) {
+  printf("[Debug] enter try to playback audio\r\n");
+  long temp_loops = this->loops;
+  int err = 0;
+
+  std::ifstream ifs_file;
+
+  printf("try to open file:[%s]. ", filename.c_str());
+
+  ifs_file.open(filename, std::ios::binary);
+  if (!ifs_file) {
+    printf("open file failed!\r\n");
+    return false;
+  }
+
+  const size_t temp_buffer_size = this->buffer_size;
+  char temp_buffer[temp_buffer_size];
+
+  printf("temp_buffer_size is [%d] \r\n", temp_buffer_size);
+  printf("enter loop\r\n");
+
+  while (temp_loops) {
+    temp_loops--;
+    // err = read(, this->audio_buffer, this->buffer_size);
+    ifs_file.read(temp_buffer, temp_buffer_size);
+
+    // if (err == 0) {
+    //   printf("end of file on input\r\n");
+    //   break;
+    // } else if (err != this->buffer_size) {
+    //   printf("read file error!\r\n");
+    // }
+    err = snd_pcm_writei(this->playback_handle, temp_buffer, this->frames);
+    if (err == -EPIPE) {
+      printf("underrun occurred \r\n");
+      snd_pcm_prepare(this->playback_handle);
+    } else if (err < 0) {
+      printf("error from writei: %s \r\n", snd_strerror(err));
+    } else if (err != (int)this->frames) {
+      printf("short write, write %d frames\r\n", err);
+    }
+  }
+
+  printf("exit loop\r\n");
+
+  ifs_file.close();
+
+  snd_pcm_drain(this->playback_handle);
+  snd_pcm_close(this->playback_handle);
+  free(this->audio_buffer);
+
+  return true;
+}
+
 }  // namespace alsa_asound
 
 }  // namespace audio
