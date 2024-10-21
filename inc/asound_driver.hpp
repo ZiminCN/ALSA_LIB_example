@@ -28,6 +28,7 @@ namespace audio {
 namespace alsa_asound {
 
 #define PCM_NAME "hw:2,0"
+#define CTL_NAME "hw:2"
 #define DEFAULT_PCM_NAME "default"
 #define PLAYBACK_FILE "ybxyq.wav"
 // ALSA buffer size for playback will be multiplied by this number (max: 16)
@@ -43,10 +44,6 @@ class ASoundDriver {
     }
   };
   bool init_audio_pcm(const char *name, snd_pcm_format_t format);
-  bool try_playback_audio(WAVHeader wav_header);
-  bool init_snd_mixer();
-  bool set_snd_volume(int volume_percent);  // volume_percent: 0-100
-  bool test_try_to_playback_audio(const std::string &filename);
   bool try_to_playback_audio(WAVHeader wav_header, const std::string &filename);
 
   char *get_audio_buffer() { return this->audio_buffer; }
@@ -64,9 +61,6 @@ class ASoundDriver {
   long loops = 5000000;
   int buffer_size;
   char *audio_buffer;
-  snd_mixer_t *mixer_handle = nullptr;
-  snd_mixer_elem_t *elem = nullptr;
-  snd_mixer_selem_id_t *sid = nullptr;
 };
 
 }  // namespace alsa_asound
