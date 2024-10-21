@@ -1,3 +1,6 @@
+#ifndef __AUDIO_FILE_ANALYZER_HPP__
+#define __AUDIO_FILE_ANALYZER_HPP__
+
 #include <alsa/asoundlib.h>
 #include <audio_struct_define.h>
 #include <unistd.h>
@@ -54,3 +57,5 @@ class AudioFileAnalyzer {
 #ifdef __cplusplus
 }
 #endif
+
+#endif  // AUDIO_FILE_ANALYZER_HPP_

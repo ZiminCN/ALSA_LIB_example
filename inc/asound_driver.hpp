@@ -1,3 +1,6 @@
+#ifndef __ASOUND_DRIVER_HPP__
+#define __ASOUND_DRIVER_HPP__
+
 #include <alsa/asoundlib.h>
 #include <audio_struct_define.h>
 #include <unistd.h>
@@ -70,3 +73,5 @@ class ASoundDriver {
 #ifdef __cplusplus
 }
 #endif
+
+#endif  // ALSA_ASOUND_DRIVER_HPP_

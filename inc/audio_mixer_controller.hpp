@@ -1,3 +1,6 @@
+#ifndef __AUDIO_MIXER_CONTROLLER_HPP__
+#define __AUDIO_MIXER_CONTROLLER_HPP__
+
 #include <alsa/asoundlib.h>
 #include <audio_struct_define.h>
 #include <unistd.h>
@@ -47,3 +50,5 @@ class AudioMixerController {
 #ifdef __cplusplus
 }
 #endif
+
+#endif  // __AUDIO_MIXER_CONTROLLER_HPP__

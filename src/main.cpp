@@ -31,8 +31,14 @@ int main() {
       audio_mixer_controller_api =
           std::make_shared<audio::mixer::AudioMixerController>();
 
+  std::shared_ptr<audio::audio_play_task::AudioPlayTaskController>
+      audio_play_task_api =
+          std::make_shared<audio::audio_play_task::AudioPlayTaskController>();
+
   asound_driver_api->init_audio_pcm(PCM_NAME, SND_PCM_FORMAT_S16_LE);
-  std::string wav_file_path = "/home/ziminrsp/ohuiliu_fangdatong.wav";
+  std::string wav_file_path = "/home/ziminrsp/huiliu_fangdatong.wav";
+  //   std::string wav_file_path =
+  //       "/home/ziminrsp/code_ws/music-source/44100/Chinese/mute.wav";
   auto wav_header = audio_file_analyzer_api->getWavHeader_T();
   wav_header = audio_file_analyzer_api->open_wav_file(wav_file_path);
 
@@ -72,9 +78,11 @@ int main() {
 
   audio_mixer_controller_api->init_audio_mixer();
 
-  audio_mixer_controller_api->set_audio_volume(80, 80);
+  audio_mixer_controller_api->set_audio_volume(81, 81);
 
   asound_driver_api->try_to_playback_audio(wav_header, wav_file_path);
+
+  audio_play_task_api->start_audio_task();
 
   while (true) {
     std::cout << "IDLE..." << std::endl;

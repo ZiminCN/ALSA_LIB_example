@@ -136,6 +136,7 @@ bool ASoundDriver::try_to_playback_audio(WAVHeader wav_header,
       // printf("success read file byte! \r\n");
     } else if (ifs_file.eof()) {
       printf("read file end! \r\n");
+      return false;
     } else if (ifs_file.fail()) {
       printf("read file error! \r\n");
       return false;
