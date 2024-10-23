@@ -195,7 +195,7 @@ bool AudioPlayTaskController::start_audio_task() {
 
   this->audio_mixer_controller_api->init_audio_mixer();
 
-  this->audio_mixer_controller_api->set_audio_volume(127, 127);
+  this->audio_mixer_controller_api->set_audio_volume(110, 110);
 
   header = this->audio_file_analyzer_api->getWavHeader_T();
 
@@ -203,7 +203,7 @@ bool AudioPlayTaskController::start_audio_task() {
 
   try {
     if (is_task_running_.load()) {
-      audio_task_thread = std::make_shared<std::thread>(
+      this->audio_task_thread = std::make_shared<std::thread>(
           &AudioPlayTaskController::process_queue, this);
     }
   } catch (const std::exception& e) {

@@ -25,8 +25,8 @@ int main() {
 
     std::string wav_file_path = "/home/ziminrsp/huiliu_fangdatong.wav";
 
-  audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::mute));
-  audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::battery_check_failed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::mute));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::battery_check_failed));
 //   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::left_battery_offline));
 //   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::left_battery_online));
 //   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::right_battery_offline));

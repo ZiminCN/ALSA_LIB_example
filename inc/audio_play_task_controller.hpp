@@ -125,6 +125,7 @@ class AudioPlayTaskController {
   std::queue<std::string> audio_queue;
   std::mutex audio_task_mutex;
   std::shared_ptr<std::thread> audio_task_thread;
+
   WAVHeader header;
   YAML::Node chinese_audio_files_config;
   YAML::Node english_audio_files_config;
