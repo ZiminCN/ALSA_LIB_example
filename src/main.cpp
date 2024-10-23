@@ -23,71 +23,63 @@ int main() {
       audio_play_task_api =
           std::make_shared<audio::audio_play_task::AudioPlayTaskController>();
 
-  //   std::string wav_file_path = "/home/ziminrsp/huiliu_fangdatong.wav";
-  std::string wav_file_path1 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "audio_error.wav";
-  std::string wav_file_path2 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "camera_error.wav";
-  std::string wav_file_path3 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "camera_normal.wav";
-  std::string wav_file_path4 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "wifi_error.wav";
-  std::string wav_file_path5 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "wifi_succeed.wav";
-  std::string wav_file_path6 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "infrared_tof_error.wav";
-  std::string wav_file_path7 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "infrared_tof_succeed.wav";
-  std::string wav_file_path8 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "interaction_port_error.wav";
-  std::string wav_file_path9 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "interaction_port_succeed.wav";
-  std::string wav_file_path10 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "pose_error.wav";
-  std::string wav_file_path11 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "pose_succeed.wav";
-  std::string wav_file_path12 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "quadruped_mode_error.wav";
-  std::string wav_file_path13 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "quadruped_mode_succeed.wav";
-  std::string wav_file_path14 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "temperature_humidity_error.wav";
-  std::string wav_file_path15 =
-      "/home/ziminrsp/code_ws/music-source/44100/Chinese/sensors/"
-      "temperature_humidity_succeed.wav";
+    std::string wav_file_path = "/home/ziminrsp/huiliu_fangdatong.wav";
 
-  //   std::string wav_file_path =
-  //       "/home/ziminrsp/code_ws/music-source/44100/Chinese/mute.wav";
+  audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::mute));
+  audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::battery_check_failed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::left_battery_offline));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::left_battery_online));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::right_battery_offline));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::right_battery_online));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::left_battery_low_power));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::right_battery_low_power));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::boot_up));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::down_finished));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::downing));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::controller_connected));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::controller_disconnected));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::enter_low_power_mode));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::exit_low_power_mode));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::imu_connected));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::imu_disconnected));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::over_speed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pms_check_failed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pms_check_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pms_selftest_timeout));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pose_status_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::shutdown));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::stand_up));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::turn_off_v48));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::low_power));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_1_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_2_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_3_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_4_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_5_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_6_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_7_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::motor_8_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::audio_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::camera_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::camera_normal));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::infrared_tof_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::infrared_tof_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::interaction_port_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::interaction_poer_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pose_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::pose_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::quadruped_mode_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::quadruped_mode_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::temperature_humidity_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::temperature_humidity_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::ultrasonic_wave_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::ultrasonic_wave_succeed));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::wifi_error));
+//   audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), audio_play_task_api->get_audio_play_task_file_path(audio::audio_play_task::audio_play_task_status_t::wifi_succeed));
 
-  audio_play_task_api->add_audio_task(wav_file_path1);
-  audio_play_task_api->add_audio_task(wav_file_path2);
-  audio_play_task_api->add_audio_task(wav_file_path3);
-  audio_play_task_api->add_audio_task(wav_file_path4);
-  audio_play_task_api->add_audio_task(wav_file_path5);
-  audio_play_task_api->add_audio_task(wav_file_path6);
-  audio_play_task_api->add_audio_task(wav_file_path7);
-  audio_play_task_api->add_audio_task(wav_file_path8);
-  audio_play_task_api->add_audio_task(wav_file_path9);
-  audio_play_task_api->add_audio_task(wav_file_path10);
-  audio_play_task_api->add_audio_task(wav_file_path11);
-  audio_play_task_api->add_audio_task(wav_file_path12);
-  audio_play_task_api->add_audio_task(wav_file_path13);
-  audio_play_task_api->add_audio_task(wav_file_path14);
-  audio_play_task_api->add_audio_task(wav_file_path15);
+    audio_play_task_api->add_audio_task_callback(std::bind(&audio::audio_play_task::AudioPlayTaskController::add_audio_task, audio_play_task_api, std::placeholders::_1), wav_file_path);
+
+
 
   audio_play_task_api->start_audio_task();
 
